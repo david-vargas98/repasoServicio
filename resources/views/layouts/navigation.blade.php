@@ -15,6 +15,10 @@
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
+                    {{-- Se activa gracias a que se inter´reta cpmo un booleano, en este caso en estar en la ruta chirps.index --}}
+                    <x-nav-link :href="route('chirps.index')" :active="request()->routeIs('chirps.index')">
+                        {{ __('Chirps') }} {{-- Nombre que aparece en el link de navegación --}}
+                    </x-nav-link>
                 </div>
             </div>
 
@@ -69,6 +73,10 @@
         <div class="pt-2 pb-3 space-y-1">
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                 {{ __('Dashboard') }}
+            </x-responsive-nav-link>
+            {{-- Para el menú responsivo se hace lo mismo que en el primary menu --}}
+            <x-responsive-nav-link :href="route('chirps.index')" :active="request()->routeIs('chirps.index')">
+                {{ __('Chirps') }}
             </x-responsive-nav-link>
         </div>
 
