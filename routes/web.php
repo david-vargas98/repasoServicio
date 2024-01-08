@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-
+use App\Models\Chirp;
 Route::get('/', function () {
     return view('welcome');
 });
@@ -17,6 +17,19 @@ Route::middleware('auth')->group(function () {
     Route::get('/chirps', function () {
         return view('chirps.index');
     })->name('chirps.index');
+
+    //Ruta para el método post del formulario
+    Route::post('/chirps', function(){
+        //Inserción en la BD
+        Chirp::create([
+            'message' => request('message'), //Mensaje que el usuaeio escribió
+            'user_id' => auth()->id(), //Usuario autenticado
+        ]);
+        //Mensaje de sesión
+        
+        //Retorno a la ruta
+        to_route('chirps.index');
+    });
 });
 
 require __DIR__.'/auth.php';
