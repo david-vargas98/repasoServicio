@@ -32,10 +32,9 @@ class ChirpController extends Controller
         $request->validate([
             'message' => ['required', 'min:3', 'max:255']
         ]);
-        //Inserción en la BD
-        Chirp::create([
-            'message' => $request->get('message'), //Mensaje que el usuario escribió
-            'user_id' => auth()->id(), //Usuario autenticado
+        //Asignación
+        $chirp = $request->user()->chirps()->create([
+            'message' => $request->get('message'),
         ]);
         //Retorno a la ruta con mensaje de sesión traducido usando: __('')
         return to_route('chirps.index')->with('status', __('Chirp created successfully!'));
