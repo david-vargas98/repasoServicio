@@ -45,7 +45,7 @@ class User extends Authenticatable
     ];
     /**
      * Relationship between User and chirps, 1-m (a user could have multiple chirps on a database).
-     *@params $parametros_requeridos
+     *
      */
     public function chirps(): HasMany
     {
