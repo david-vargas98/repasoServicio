@@ -28,6 +28,10 @@ class ChirpController extends Controller
      */
     public function store(Request $request)
     {
+        //Validaciones
+        $request->validate([
+            'message' => ['required', 'min:3', 'max:255']
+        ]);
         //Inserción en la BD
         Chirp::create([
             'message' => $request->get('message'), //Mensaje que el usuario escribió
